@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://www.teabox.com/.well-known/ucp
+note: >-
+  Teabox runs on Shopify, which natively exposes a Universal Commerce Protocol
+  (UCP) shopping MCP endpoint for agent-driven commerce. The MCP endpoint is
+  live and advertised in the store's llms.txt and UCP merchant profile. A
+  tools/list call requires a valid agent profile URI (buyer-approval flow), so
+  the tool schema is published at the UCP OpenRPC schema URL rather than
+  enumerated here. Checkout requires explicit human buyer approval.
+server:
+  name: teabox-ucp-shopping
+  transport: http
+  protocol: mcp
+  url: https://www.teabox.com/api/ucp/mcp
+  alt_url: https://teabox-usd.myshopify.com/api/ucp/mcp
+  ucp_version: '2026-04-08'
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  spec: https://ucp.dev/2026-04-08/specification/overview/
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+tools:
+- name: search_catalog
+  description: Search the store catalog for products matching a buyer's intent
+- name: create_cart
+  description: Create a cart and add desired items
+- name: create_checkout
+  description: Start a purchase/checkout flow
+- name: update_checkout
+  description: Set shipping address and method on a checkout
+- name: complete_checkout
+  description: Finalize a purchase (requires explicit buyer payment approval)
+rules:
+- Checkout requires contemporaneous human buyer approval; agents must not complete payment without consent.
+- MCP endpoint is rate-limited per IP; back off on HTTP 429.
+- Pass context.address_country and context.currency for accurate pricing and availability.

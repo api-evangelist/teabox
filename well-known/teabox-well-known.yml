@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: live probe of https://www.teabox.com/.well-known/*
+host: https://www.teabox.com
+note: >-
+  Teabox is a Shopify-hosted store. Its .well-known discovery surface is served
+  by the Shopify platform but scoped to the Teabox brand (OIDC issuer
+  accounts.teabox.com). The store exposes an agent-commerce surface via the
+  Universal Commerce Protocol (UCP) and the Shopify Customer Account API,
+  including a customer-account MCP scope.
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: teabox-openid-configuration.json
+  description: OpenID Connect discovery for the Shopify Customer Account API (issuer accounts.teabox.com)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: teabox-oauth-authorization-server.json
+  description: RFC 8414 OAuth Authorization Server Metadata (mirrors the OIDC discovery)
+- path: /.well-known/ucp
+  status: 200
+  file: teabox-ucp.json
+  description: Universal Commerce Protocol merchant profile (versions, services, capabilities, payment handlers)
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

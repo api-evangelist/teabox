@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.teabox.com/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+note: >-
+  Teabox authenticates buyers through the Shopify Customer Account API, an
+  OpenID Connect provider. The OIDC issuer is brand-scoped to
+  accounts.teabox.com. Authorization Code flow with PKCE (S256) is used;
+  clients authenticate to the token endpoint with client_secret_basic. This is
+  a platform-provided identity surface rather than a first-party Teabox API.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  pkce: S256
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  type: openIdConnect
+  openIdConnectUrl: https://www.teabox.com/.well-known/openid-configuration
+  issuer: https://shopify.com/authentication/20013521
+  authorization_endpoint: https://accounts.teabox.com/authentication/oauth/authorize
+  token_endpoint: https://accounts.teabox.com/authentication/oauth/token
+  end_session_endpoint: https://accounts.teabox.com/authentication/logout
+  jwks_uri: https://accounts.teabox.com/authentication/.well-known/jwks.json
+  token_endpoint_auth_methods: [client_secret_basic]
+  grant_types: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+  response_types: [code]
+  id_token_signing_alg: [RS256]
+  code_challenge_methods: [S256]
+  sources: [well-known/teabox-openid-configuration.json]
