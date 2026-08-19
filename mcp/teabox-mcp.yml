@@ -2,13 +2,11 @@ generated: '2026-07-21'
 method: searched
 status: published
 source: https://www.teabox.com/.well-known/ucp
-note: >-
-  Teabox runs on Shopify, which natively exposes a Universal Commerce Protocol
-  (UCP) shopping MCP endpoint for agent-driven commerce. The MCP endpoint is
-  live and advertised in the store's llms.txt and UCP merchant profile. A
-  tools/list call requires a valid agent profile URI (buyer-approval flow), so
-  the tool schema is published at the UCP OpenRPC schema URL rather than
-  enumerated here. Checkout requires explicit human buyer approval.
+note: Teabox runs on Shopify, which natively exposes a Universal Commerce Protocol (UCP) shopping MCP
+  endpoint for agent-driven commerce. The MCP endpoint is live and advertised in the store's llms.txt
+  and UCP merchant profile. A tools/list call requires a valid agent profile URI (buyer-approval flow),
+  so the tool schema is published at the UCP OpenRPC schema URL rather than enumerated here. Checkout
+  requires explicit human buyer approval.
 server:
   name: teabox-ucp-shopping
   transport: http
@@ -45,3 +43,11 @@ rules:
 - Checkout requires contemporaneous human buyer approval; agents must not complete payment without consent.
 - MCP endpoint is rate-limited per IP; back off on HTTP 429.
 - Pass context.address_country and context.currency for accurate pricing and availability.
+deployment:
+  mode: remote
+  endpoint: https://www.teabox.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
