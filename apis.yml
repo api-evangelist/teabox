@@ -53,7 +53,7 @@ tags:
 - E-Commerce
 - Retail
 - Shopify
-- Agent Commerce
+- Agentic Commerce
 tags_raw:
 - Company
 - Consumer
@@ -73,6 +73,11 @@ apis:
   humanURL: https://www.teabox.com/llms.txt
   baseURL: https://www.teabox.com
   tags:
+  - Agentic Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - Shopify
+  tags_raw:
   - Agent Commerce
   - MCP
   - UCP
