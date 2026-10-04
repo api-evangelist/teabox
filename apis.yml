@@ -71,7 +71,6 @@ apis:
     catalog search/lookup, cart, checkout, fulfillment, discounts and orders.
     Payment completion requires explicit human buyer approval.
   humanURL: https://www.teabox.com/llms.txt
-  baseURL: https://www.teabox.com
   tags:
   - Agentic Commerce
   - MCP
@@ -93,6 +92,9 @@ apis:
     url: authentication/teabox-authentication.yml
   - type: OAuthScopes
     url: scopes/teabox-scopes.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
